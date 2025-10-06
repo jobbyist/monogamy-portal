@@ -47,9 +47,9 @@ const Navbar = () => {
             >
               Contact
             </Link>
-            <Link to="/auth">
+            <Link to="/contact">
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Client Portal
+                Contact us
               </Button>
             </Link>
           </div>
