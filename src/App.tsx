@@ -17,6 +17,7 @@ import Transactions from "./pages/Transactions";
 import Support from "./pages/Support";
 import UserServices from "./pages/UserServices";
 import Profile from "./pages/Profile";
+import Updates from "./pages/Updates";
 import FloatingChatbot from "./components/FloatingChatbot";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/dashboard/invoices" element={<Invoices />} />
           <Route path="/dashboard/transactions" element={<Transactions />} />
           <Route path="/dashboard/profile" element={<Profile />} />
+          <Route path="/dashboard/updates" element={<Updates />} />
           <Route path="/dashboard/support" element={<Support />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

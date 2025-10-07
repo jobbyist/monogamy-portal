@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Globe, MessageSquare, FileText, CreditCard, LifeBuoy, LayoutDashboard, LogOut, Settings, Briefcase, User } from "lucide-react";
+import { Globe, MessageSquare, FileText, CreditCard, LifeBuoy, LayoutDashboard, LogOut, Settings, Briefcase, User, Menu, X, Bell } from "lucide-react";
 import monogamyLogo from "@/assets/monogamy-logo.png";
 
 interface DashboardLayoutProps {
@@ -13,6 +13,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [user, setUser] = useState<any>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -43,6 +44,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { icon: FileText, label: "Invoices", path: "/dashboard/invoices" },
     { icon: CreditCard, label: "Transactions", path: "/dashboard/transactions" },
     { icon: User, label: "Profile", path: "/dashboard/profile" },
+    { icon: Bell, label: "Updates", path: "/dashboard/updates" },
     { icon: LifeBuoy, label: "Support", path: "/dashboard/support" },
   ];
 
@@ -51,9 +53,19 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            <Link to="/dashboard">
-              <img src={monogamyLogo} alt="Monogamy" className="h-8" />
-            </Link>
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="lg:hidden"
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+              >
+                {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+              <Link to="/dashboard">
+                <img src={monogamyLogo} alt="Monogamy" className="h-8" />
+              </Link>
+            </div>
             <Button variant="ghost" onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />
               Logout
@@ -63,10 +75,24 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       </nav>
 
       <div className="flex pt-16">
-        <aside className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 border-r border-border bg-background p-6 overflow-y-auto">
+        {/* Mobile overlay */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+        
+        {/* Sidebar */}
+        <aside className={`
+          fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 border-r border-border bg-background p-6 overflow-y-auto z-40
+          transition-transform duration-300 ease-in-out
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          lg:translate-x-0
+        `}>
           <nav className="space-y-2">
             {menuItems.map((item) => (
-              <Link key={item.path} to={item.path}>
+              <Link key={item.path} to={item.path} onClick={() => setSidebarOpen(false)}>
                 <Button
                   variant={isActive(item.path) ? "secondary" : "ghost"}
                   className="w-full justify-start"
@@ -79,7 +105,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </nav>
         </aside>
 
-        <main className="ml-64 flex-1 p-8">
+        <main className="flex-1 p-4 md:p-8 lg:ml-64">
           {children}
         </main>
       </div>
