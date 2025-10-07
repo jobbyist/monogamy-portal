@@ -191,6 +191,8 @@ export type Database = {
           plan_start_date: string | null
           postal_code: string | null
           practice_area: string | null
+          preferred_currency: string | null
+          preferred_language: string | null
           pricing_plan: Database["public"]["Enums"]["pricing_plan"] | null
           registration_number: string | null
           state: string | null
@@ -211,6 +213,8 @@ export type Database = {
           plan_start_date?: string | null
           postal_code?: string | null
           practice_area?: string | null
+          preferred_currency?: string | null
+          preferred_language?: string | null
           pricing_plan?: Database["public"]["Enums"]["pricing_plan"] | null
           registration_number?: string | null
           state?: string | null
@@ -231,6 +235,8 @@ export type Database = {
           plan_start_date?: string | null
           postal_code?: string | null
           practice_area?: string | null
+          preferred_currency?: string | null
+          preferred_language?: string | null
           pricing_plan?: Database["public"]["Enums"]["pricing_plan"] | null
           registration_number?: string | null
           state?: string | null

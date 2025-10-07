@@ -26,16 +26,16 @@ const WhyChooseUs = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-all duration-300"
+              className="bg-card border border-border rounded-2xl p-6 md:p-8 hover:border-primary/50 transition-all duration-300"
             >
-              <h3 className="text-xl font-semibold text-foreground mb-3">
+              <h3 className="text-lg md:text-xl font-semibold text-foreground mb-3">
                 {benefit.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                 {benefit.description}
               </p>
             </div>
