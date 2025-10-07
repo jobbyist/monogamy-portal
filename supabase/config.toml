@@ -1,1 +1,7 @@
 project_id = "zjtujfpmosxyqzegzspj"
+
+[functions.support-chatbot]
+verify_jwt = false
+
+[functions.monogamy-ai]
+verify_jwt = false

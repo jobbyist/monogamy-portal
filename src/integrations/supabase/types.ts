@@ -142,32 +142,98 @@ export type Database = {
         }
         Relationships: []
       }
+      payment_methods: {
+        Row: {
+          created_at: string | null
+          details: Json | null
+          id: string
+          is_active: boolean | null
+          provider: string
+          provider_customer_id: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          details?: Json | null
+          id?: string
+          is_active?: boolean | null
+          provider: string
+          provider_customer_id?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          details?: Json | null
+          id?: string
+          is_active?: boolean | null
+          provider?: string
+          provider_customer_id?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
+          address: string | null
+          city: string | null
           company_name: string | null
+          country: string | null
           created_at: string | null
           email: string
           full_name: string | null
           id: string
+          law_firm_name: string | null
           phone: string | null
+          plan_renewal_date: string | null
+          plan_start_date: string | null
+          postal_code: string | null
+          practice_area: string | null
+          pricing_plan: Database["public"]["Enums"]["pricing_plan"] | null
+          registration_number: string | null
+          state: string | null
           updated_at: string | null
         }
         Insert: {
+          address?: string | null
+          city?: string | null
           company_name?: string | null
+          country?: string | null
           created_at?: string | null
           email: string
           full_name?: string | null
           id: string
+          law_firm_name?: string | null
           phone?: string | null
+          plan_renewal_date?: string | null
+          plan_start_date?: string | null
+          postal_code?: string | null
+          practice_area?: string | null
+          pricing_plan?: Database["public"]["Enums"]["pricing_plan"] | null
+          registration_number?: string | null
+          state?: string | null
           updated_at?: string | null
         }
         Update: {
+          address?: string | null
+          city?: string | null
           company_name?: string | null
+          country?: string | null
           created_at?: string | null
           email?: string
           full_name?: string | null
           id?: string
+          law_firm_name?: string | null
           phone?: string | null
+          plan_renewal_date?: string | null
+          plan_start_date?: string | null
+          postal_code?: string | null
+          practice_area?: string | null
+          pricing_plan?: Database["public"]["Enums"]["pricing_plan"] | null
+          registration_number?: string | null
+          state?: string | null
           updated_at?: string | null
         }
         Relationships: []
@@ -308,6 +374,33 @@ export type Database = {
         }
         Relationships: []
       }
+      user_services: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_enabled: boolean | null
+          service_type: Database["public"]["Enums"]["service_type"]
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          service_type: Database["public"]["Enums"]["service_type"]
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          service_type?: Database["public"]["Enums"]["service_type"]
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       websites: {
         Row: {
           created_at: string | null
@@ -370,6 +463,14 @@ export type Database = {
       domain_status: "active" | "pending" | "expired" | "cancelled"
       invoice_status: "draft" | "pending" | "paid" | "overdue" | "cancelled"
       payment_status: "pending" | "completed" | "failed" | "refunded"
+      pricing_plan: "standard" | "professional" | "enterprise"
+      service_type:
+        | "workflow_automation"
+        | "chatbot_development"
+        | "content_creation"
+        | "client_intake"
+        | "custom_dashboards"
+        | "conversational_ai"
       support_status:
         | "open"
         | "in_progress"
@@ -507,6 +608,15 @@ export const Constants = {
       domain_status: ["active", "pending", "expired", "cancelled"],
       invoice_status: ["draft", "pending", "paid", "overdue", "cancelled"],
       payment_status: ["pending", "completed", "failed", "refunded"],
+      pricing_plan: ["standard", "professional", "enterprise"],
+      service_type: [
+        "workflow_automation",
+        "chatbot_development",
+        "content_creation",
+        "client_intake",
+        "custom_dashboards",
+        "conversational_ai",
+      ],
       support_status: [
         "open",
         "in_progress",

@@ -2,7 +2,8 @@ import { ReactNode, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Globe, MessageSquare, FileText, CreditCard, LifeBuoy, LayoutDashboard, LogOut } from "lucide-react";
+import { Globe, MessageSquare, FileText, CreditCard, LifeBuoy, LayoutDashboard, LogOut, Settings, Briefcase, User } from "lucide-react";
+import monogamyLogo from "@/assets/monogamy-logo.png";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -38,8 +39,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { icon: Globe, label: "Domains", path: "/dashboard/domains" },
     { icon: Globe, label: "Websites", path: "/dashboard/websites" },
     { icon: MessageSquare, label: "Chatbots", path: "/dashboard/chatbots" },
+    { icon: Briefcase, label: "Services", path: "/dashboard/services" },
     { icon: FileText, label: "Invoices", path: "/dashboard/invoices" },
     { icon: CreditCard, label: "Transactions", path: "/dashboard/transactions" },
+    { icon: User, label: "Profile", path: "/dashboard/profile" },
     { icon: LifeBuoy, label: "Support", path: "/dashboard/support" },
   ];
 
@@ -48,8 +51,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            <Link to="/dashboard" className="text-2xl font-bold text-foreground">
-              Monogamy Portal
+            <Link to="/dashboard">
+              <img src={monogamyLogo} alt="Monogamy" className="h-8" />
             </Link>
             <Button variant="ghost" onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />
