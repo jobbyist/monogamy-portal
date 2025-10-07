@@ -57,6 +57,8 @@ const Profile = () => {
       state: formData.get("state") as string,
       country: formData.get("country") as string,
       postal_code: formData.get("postal_code") as string,
+      preferred_language: formData.get("preferred_language") as string,
+      preferred_currency: formData.get("preferred_currency") as string,
     };
 
     const { error } = await supabase
@@ -243,6 +245,47 @@ const Profile = () => {
                     name="postal_code"
                     defaultValue={profile.postal_code || ""}
                   />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Preferences</CardTitle>
+              <CardDescription>Set your language and currency preferences</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="preferred_language">Preferred Language</Label>
+                  <Select name="preferred_language" defaultValue={profile.preferred_language || "en"}>
+                    <SelectTrigger id="preferred_language">
+                      <SelectValue placeholder="Select language" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="en">English</SelectItem>
+                      <SelectItem value="af">Afrikaans</SelectItem>
+                      <SelectItem value="zu">Zulu</SelectItem>
+                      <SelectItem value="xh">Xhosa</SelectItem>
+                      <SelectItem value="es">Spanish</SelectItem>
+                      <SelectItem value="fr">French</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="preferred_currency">Preferred Currency</Label>
+                  <Select name="preferred_currency" defaultValue={profile.preferred_currency || "USD"}>
+                    <SelectTrigger id="preferred_currency">
+                      <SelectValue placeholder="Select currency" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="USD">USD ($) - US Dollar</SelectItem>
+                      <SelectItem value="ZAR">ZAR (R) - South African Rand</SelectItem>
+                      <SelectItem value="EUR">EUR (€) - Euro</SelectItem>
+                      <SelectItem value="GBP">GBP (£) - British Pound</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </CardContent>
